@@ -1,0 +1,26 @@
+{
+  "name": "netfilix-clone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./backend/server.js",
+  "scripts": {
+    "dev": "NODE_ENV=development nodemon ./backend/server.js",
+    "start": "NODE_ENV=production node ./backend/server.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.13.2",
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "mongoose": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}
