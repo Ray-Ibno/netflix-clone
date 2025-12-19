@@ -73,16 +73,16 @@ export const signup = async (req, res) => {
 
     const image = profilePics[Math.floor(Math.random() * profilePics.length)]
 
-    const newUser = await User.create({
+    const user = await User.create({
       email,
       username,
       password: hashedPassword,
       image,
     })
 
-    const token = generateTokenAndSetCookie({ userId: newUser._id }, res)
+    const token = generateTokenAndSetCookie({ userId: user._id }, res)
 
-    res.status(201).json({ token, newUser })
+    res.status(201).json({ token, user })
   } catch (error) {
     console.error(`Error at signup controller: ${error.message}`)
     res.status(500).json({ message: 'Internal server error' })
@@ -100,6 +100,16 @@ export const logout = (req, res) => {
     res.status(200).json({ message: 'Logged out successfully' })
   } catch (error) {
     console.error(`Error at logout controller: ${error}`)
+    res.status(500).json({ message: 'Internal server error' })
+  }
+}
+
+export const getAuthUser = (req, res) => {
+  const authUser = req.user
+  try {
+    res.status(200).json(authUser)
+  } catch (error) {
+    console.error(`Error at getAuthUser controller: ${error.message}`)
     res.status(500).json({ message: 'Internal server error' })
   }
 }

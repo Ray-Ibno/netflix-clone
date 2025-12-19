@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import type { LoginType } from '../types'
 import { Link } from 'react-router-dom'
+import { useAuthStore } from '../../../store/authUser'
 
 const LoginForm = () => {
   const [formData, setFormData] = useState<LoginType>({
@@ -8,13 +9,11 @@ const LoginForm = () => {
     password: '',
   })
 
+  const { login } = useAuthStore()
+
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(formData)
-    setFormData({
-      username: '',
-      password: '',
-    })
+    login(formData)
   }
   return (
     <>

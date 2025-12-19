@@ -1,25 +1,25 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 
 import type { SignUpType } from '../types'
+import { useAuthStore } from '../../../store/authUser'
 
 const SignupForm = () => {
+  const [searchParams] = useSearchParams()
+  const email = searchParams.get('email')
+
+  const { signup } = useAuthStore()
+
   const [formData, setFormData] = useState<SignUpType>({
-    email: '',
+    email: email || '',
     username: '',
     password: '',
-    repeatPassword: '',
+    passwordRepeat: '',
   })
 
   const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(formData)
-    setFormData({
-      email: '',
-      username: '',
-      password: '',
-      repeatPassword: '',
-    })
+    signup(formData)
   }
 
   return (
@@ -88,13 +88,13 @@ const SignupForm = () => {
                 Re-type Password
               </label>
               <input
-                value={formData.repeatPassword || ''}
+                value={formData.passwordRepeat || ''}
                 type="password"
                 className="w-full px-3 py-2 mt-1 border border-gray-700 rounded-md bg-transparent text-white focus:outline-none focus:ring"
                 placeholder="•••••••••••"
                 id="repeat"
                 onChange={(e) =>
-                  setFormData({ ...formData, repeatPassword: e.target.value })
+                  setFormData({ ...formData, passwordRepeat: e.target.value })
                 }
               />
             </div>
