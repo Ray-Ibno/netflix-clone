@@ -13,7 +13,7 @@ function App() {
 
   useEffect(() => {
     getAuthUser()
-  }, [user, getAuthUser])
+  }, [getAuthUser])
 
   if (isGettingUser) {
     return (

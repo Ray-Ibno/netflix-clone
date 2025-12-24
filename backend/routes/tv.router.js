@@ -1,3 +1,6 @@
+import express from 'express'
+const router = express.Router()
+
 import {
   getSimilarTvShows,
   getTrendingTvShows,
@@ -5,7 +8,6 @@ import {
   getTvShowsByCategory,
   getTvTrailers,
 } from '../controllers/tv.controller.js'
-import router from './movie.router.js'
 
 router.get('/trending', getTrendingTvShows)
 router.get('/trailers/:id', getTvTrailers)

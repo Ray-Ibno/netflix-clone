@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { ChevronRight } from 'lucide-react'
-import SectionSeparator from '../../../components/SectionSeparator'
+import SectionSeparator from '../../../../components/SectionSeparator'
 
 const GuestHomePage = () => {
   const [email, setEmail] = useState('')
