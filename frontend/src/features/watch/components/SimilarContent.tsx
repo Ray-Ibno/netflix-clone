@@ -23,7 +23,7 @@ const SimilarContent = ({ similarContent }: SimilarContentProp) => {
         Similar {contentType === 'movie' ? 'Movies' : 'TV Shows'}
       </h3>
 
-      <div className="flex overflow-x-scroll scrollbar-hide gap-4 pb-4 group" ref={slideRef}>
+      <div className="flex overflow-x-scroll scrollbar-hide gap-4 pb-4" ref={slideRef}>
         <SliderItems content={similarContent} />
       </div>
       {isButtonsVisible && <SliderBtns slideRef={slideRef} />}
