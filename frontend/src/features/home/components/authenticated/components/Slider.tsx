@@ -2,9 +2,9 @@ import { useRef, useState } from 'react'
 import { useContentStore } from '../../../../../store/content'
 
 import type { ContentCategory } from '../../../types'
-import SliderItems from './SliderItems'
-import { ChevronLeft, ChevronRight } from 'lucide-react'
+import SliderItems from '../../../../../components/SliderItems'
 import useGetByCategoryContent from '../../../hooks/useGetByCategoryContent'
+import SliderBtns from '../../../../../components/SliderBtns'
 
 const Slider = ({ category }: { category: ContentCategory }) => {
   const [isButtonsVisible, setIsButtonsVisible] = useState(false)
@@ -17,24 +17,6 @@ const Slider = ({ category }: { category: ContentCategory }) => {
   const categoryName = `${category[0].toUpperCase()}${category
     .slice(1)
     .replaceAll('_', ' ')} ${contentType === 'movie' ? 'Movies' : 'TV Shows'}`
-
-  const scrollRight = () => {
-    if (slideRef.current) {
-      slideRef.current.scrollBy({
-        left: slideRef.current.offsetWidth,
-        behavior: 'smooth',
-      })
-    }
-  }
-
-  const scrollLeft = () => {
-    if (slideRef.current) {
-      slideRef.current.scrollBy({
-        left: -slideRef.current.offsetWidth,
-        behavior: 'smooth',
-      })
-    }
-  }
 
   return (
     <div
@@ -50,23 +32,7 @@ const Slider = ({ category }: { category: ContentCategory }) => {
       >
         <SliderItems content={contentByCategory} />
       </div>
-      {isButtonsVisible && (
-        <>
-          <button
-            onClick={scrollLeft}
-            className="absolute top-1/2 -translate-y-1/2 left-5 md:left-20 flex items-center justify-center size-12 rounded-full bg-black opacity-50 hover:opacity-75 z-10 cursor-pointer"
-          >
-            {<ChevronLeft size={24} />}
-          </button>
-
-          <button
-            onClick={scrollRight}
-            className="absolute top-1/2 -translate-y-1/2 right-5 md:right-20 flex items-center justify-center size-12 rounded-full bg-black opacity-50 hover:opacity-75 z-10 cursor-pointer"
-          >
-            {<ChevronRight size={24} />}
-          </button>
-        </>
-      )}
+      {isButtonsVisible && <SliderBtns slideRef={slideRef} />}
     </div>
   )
 }

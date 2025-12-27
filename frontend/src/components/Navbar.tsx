@@ -1,8 +1,8 @@
 import { LogOut, Menu, Search } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { useAuthStore } from '../../../store/authUser'
+import { useAuthStore } from '../store/authUser'
 import { useState } from 'react'
-import { useContentStore } from '../../../store/content'
+import { useContentStore } from '../store/content'
 
 const Navbar = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
@@ -34,7 +34,7 @@ const Navbar = () => {
       <div className="flex items-center gap-10 z-50">
         <Link to={'/'}>
           <img
-            src="netflix-logo.png"
+            src="/netflix-logo.png"
             alt="Netflix Logo"
             className="w-32 sm:w-40"
           />

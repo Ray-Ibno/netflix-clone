@@ -51,7 +51,7 @@ export const getSimilarTvShows = async (req, res) => {
     const data = await fetchTmdb(
       `https://api.themoviedb.org/3/tv/${tv_id}/similar`
     )
-    if (!data) return res.status(400).json({ similarMovies: 'no data found' })
+    if (!data) return res.status(404).json({ similarMovies: 'no data found' })
     res.status(200).json({ content: data.results })
   } catch (error) {
     console.error(`Error at getSimilarTvShows controller: ${error.message}`)
@@ -64,7 +64,7 @@ export const getTvShowsByCategory = async (req, res) => {
   //category = now_playing || popular || top_rated || upcomming
   try {
     const data = await fetchTmdb(`https://api.themoviedb.org/3/tv/${category}`)
-    if (!data) return res.status(400).json({ content: 'no data found' })
+    if (!data) return res.status(404).json({ content: 'no data found' })
     res.status(200).json({ content: data.results })
   } catch (error) {
     console.error(`Error at getTvShowsByCategory controller: ${error.message}`)

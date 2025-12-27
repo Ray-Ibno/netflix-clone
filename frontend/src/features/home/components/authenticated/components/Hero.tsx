@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import Navbar from '../../Navbar'
+import Navbar from '../../../../../components/Navbar'
 
 import { Info, Play } from 'lucide-react'
 import { ORIGINAL_IMG_BASE_URL } from '../../../../../utils/constanst'

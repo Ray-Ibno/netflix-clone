@@ -55,7 +55,7 @@ export const getSimilarMovies = async (req, res) => {
     const data = await fetchTmdb(
       `https://api.themoviedb.org/3/movie/${movie_id}/similar`
     )
-    if (!data) return res.status(400).json({ similarMovies: 'no data found' })
+    if (!data) return res.status(404).json({ similarMovies: 'no data found' })
     res.status(200).json({ content: data.results })
   } catch (error) {
     console.error(`Error at getSimilarMovies controller: ${error.message}`)
@@ -70,7 +70,7 @@ export const getMoviesByCategory = async (req, res) => {
     const data = await fetchTmdb(
       `https://api.themoviedb.org/3/movie/${category}`
     )
-    if (!data) return res.status(400).json({ content: 'no data found' })
+    if (!data) return res.status(404).json({ content: 'no data found' })
     res.status(200).json({ content: data.results })
   } catch (error) {
     console.error(`Error at getMovieByCategory controller: ${error.message}`)

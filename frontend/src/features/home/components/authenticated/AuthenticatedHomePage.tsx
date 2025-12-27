@@ -1,8 +1,8 @@
-import Navbar from '../Navbar'
 import Hero from './components/Hero'
 import ByCategory from './components/ByCategory'
 
 import useGetTrendingContent from '../../hooks/useGetTrendingContent'
+import Navbar from '../../../../components/Navbar'
 
 const AuthenticatedHomePage = () => {
   const { data: trendingContent, isRefetching } = useGetTrendingContent()
