@@ -14,9 +14,9 @@ const Slider = ({ category }: { category: ContentCategory }) => {
 
   const { contentType } = useContentStore()
 
-  const categoryName = `${category[0].toUpperCase()}${category
-    .slice(1)
-    .replaceAll('_', ' ')} ${contentType === 'movie' ? 'Movies' : 'TV Shows'}`
+  const categoryName = `${category[0].toUpperCase()}${category.slice(1).replaceAll('_', ' ')} ${
+    contentType === 'movie' ? 'Movies' : 'TV Shows'
+  }`
 
   return (
     <div
@@ -26,10 +26,7 @@ const Slider = ({ category }: { category: ContentCategory }) => {
     >
       <h2 className="mb-4 text-2xl font-bold">{categoryName}</h2>
 
-      <div
-        className="flex space-x-4 overflow-x-scroll scrollbar-hide"
-        ref={slideRef}
-      >
+      <div className="flex space-x-4 overflow-x-scroll scrollbar-hide" ref={slideRef}>
         <SliderItems content={contentByCategory} />
       </div>
       {isButtonsVisible && <SliderBtns slideRef={slideRef} />}

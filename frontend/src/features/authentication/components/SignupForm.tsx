@@ -26,10 +26,7 @@ const SignupForm = () => {
     <>
       <form onSubmit={handleSubmitForm} className="space-y-4">
         <div>
-          <label
-            htmlFor="email"
-            className="text-sm font-medium text-gray-300 block"
-          >
+          <label htmlFor="email" className="text-sm font-medium text-gray-300 block">
             Email
           </label>
           <input
@@ -38,17 +35,12 @@ const SignupForm = () => {
             className="w-full px-3 py-2 mt-1 border border-gray-700 rounded-md bg-transparent text-white focus:outline-none focus:ring"
             placeholder="example@gmail.com"
             id="email"
-            onChange={(e) =>
-              setFormData({ ...formData, email: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
           />
         </div>
 
         <div>
-          <label
-            htmlFor="username"
-            className="text-sm font-medium text-gray-300 block"
-          >
+          <label htmlFor="username" className="text-sm font-medium text-gray-300 block">
             Username
           </label>
           <input
@@ -57,16 +49,11 @@ const SignupForm = () => {
             className="w-full px-3 py-2 mt-1 border border-gray-700 rounded-md bg-transparent text-white focus:outline-none focus:ring"
             placeholder="example"
             id="username"
-            onChange={(e) =>
-              setFormData({ ...formData, username: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, username: e.target.value })}
           />
 
           <div>
-            <label
-              htmlFor="password"
-              className="text-sm font-medium text-gray-300 block"
-            >
+            <label htmlFor="password" className="text-sm font-medium text-gray-300 block">
               Password
             </label>
             <input
@@ -75,16 +62,11 @@ const SignupForm = () => {
               className="w-full px-3 py-2 mt-1 border border-gray-700 rounded-md bg-transparent text-white focus:outline-none focus:ring"
               placeholder="•••••••••••"
               id="password"
-              onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
+              onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             />
 
             <div>
-              <label
-                htmlFor="repeat"
-                className="text-sm font-medium text-gray-300 block"
-              >
+              <label htmlFor="repeat" className="text-sm font-medium text-gray-300 block">
                 Re-type Password
               </label>
               <input
@@ -93,9 +75,7 @@ const SignupForm = () => {
                 className="w-full px-3 py-2 mt-1 border border-gray-700 rounded-md bg-transparent text-white focus:outline-none focus:ring"
                 placeholder="•••••••••••"
                 id="repeat"
-                onChange={(e) =>
-                  setFormData({ ...formData, passwordRepeat: e.target.value })
-                }
+                onChange={(e) => setFormData({ ...formData, passwordRepeat: e.target.value })}
               />
             </div>
           </div>

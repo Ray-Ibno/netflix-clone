@@ -16,12 +16,7 @@ type AuthState = {
   isGettingUser: boolean
   isLoading: boolean
   getAuthUser: () => void
-  signup: (
-    credentials: Pick<
-      User,
-      'email' | 'username' | 'password' | 'passwordRepeat'
-    >
-  ) => void
+  signup: (credentials: Pick<User, 'email' | 'username' | 'password' | 'passwordRepeat'>) => void
   login: (credentials: Pick<User, 'username' | 'password'>) => void
   logout: () => void
 }

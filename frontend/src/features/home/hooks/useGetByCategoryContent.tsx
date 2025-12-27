@@ -8,9 +8,7 @@ const useGetByCategoryContent = (category: ContentCategory) => {
 
   const getByCategoryContent = async () => {
     try {
-      const response = await axios.get(
-        `/api/v1/${contentType}/category/${category}`
-      )
+      const response = await axios.get(`/api/v1/${contentType}/category/${category}`)
       return response.data.content
     } catch (error) {
       if (axios.isAxiosError(error)) {

@@ -21,8 +21,7 @@ const VideoPlayer = ({ numOfTrailers, title, vidKey }: VideoPlayerProps) => {
 
       {numOfTrailers === 0 && (
         <h2 className="text-lg text-center mt-5">
-          No trailers available for{' '}
-          <span className="font-bold text-red-600">{title}</span>
+          No trailers available for <span className="font-bold text-red-600">{title}</span>
         </h2>
       )}
     </div>

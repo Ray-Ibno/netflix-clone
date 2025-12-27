@@ -17,11 +17,7 @@ const SliderItems = ({ content }: SliderItemsProp) => {
     <>
       {content?.map((content) =>
         !content.poster_path ? null : (
-          <Link
-            key={content.id}
-            to={`/watch/${content.id}`}
-            className="min-w-62.5 relative group"
-          >
+          <Link key={content.id} to={`/watch/${content.id}`} className="min-w-62.5 relative group">
             <div className="rounded-lg overflow-hidden">
               <img
                 src={`${SMALL_IMG_BASE_URL}${content.poster_path}`}
