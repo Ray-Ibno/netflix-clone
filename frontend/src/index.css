@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import 'tailwind-scrollbar-hide/v4';
+@plugin "daisyui";
 
 @layer base {
   body {
@@ -8,8 +9,7 @@
 }
 
 .hero-bg {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)),
-    url('hero.png');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1)), url('hero.png');
 }
 
 .shimmer {

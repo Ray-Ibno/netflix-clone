@@ -1,13 +1,16 @@
 import { Route, Routes, Navigate } from 'react-router-dom'
+
 import HomePage from './pages/home/HomePage'
 import LoginPage from './pages/authentication/LoginPage'
 import SignUpPage from './pages/authentication/SignUpPage'
+import WatchPage from './pages/watch/WatchPage'
+import SearchPage from './pages/search/SearchPage'
 import Footer from './components/Footer'
+
 import { Toaster } from 'react-hot-toast'
 import { useAuthStore } from './store/authUser'
 import { useEffect } from 'react'
 import { Loader } from 'lucide-react'
-import WatchPage from './pages/watch/WatchPage'
 
 function App() {
   const { user, getAuthUser, isGettingUser } = useAuthStore()
@@ -33,6 +36,7 @@ function App() {
         <Route path="/login" element={!user ? <LoginPage /> : <Navigate to={'/'} />} />
         <Route path="/signup" element={!user ? <SignUpPage /> : <Navigate to={'/'} />} />
         <Route path="/watch/:id" element={user ? <WatchPage /> : <Navigate to={'/login'} />} />
+        <Route path="/search" element={user ? <SearchPage /> : <Navigate to={'/login'} />} />
       </Routes>
       <Footer />
       <Toaster />
