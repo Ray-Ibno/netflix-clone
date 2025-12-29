@@ -20,6 +20,7 @@ const SearchPage = () => {
   } = useGetSearchResults(activeTab, searchValue)
 
   const handleTabClick = (tab: ActiveTab) => {
+    if (isLoading) return
     clearResutls()
     setSearchValue('')
     setActiveTab(tab)
@@ -30,7 +31,6 @@ const SearchPage = () => {
   const handleSearch = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     getSearchContentResults()
-    console.log(searchResults)
   }
 
   return (
@@ -61,8 +61,6 @@ const SearchPage = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {searchResults?.map((result) => {
-              if (!result.poster_path && !result.profile_path) return null
-
               return (
                 <div key={result.id} className="bg-gray-800 p-4 rounded">
                   {activeTab === 'People' ? (

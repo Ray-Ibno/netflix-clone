@@ -5,6 +5,7 @@ import LoginPage from './pages/authentication/LoginPage'
 import SignUpPage from './pages/authentication/SignUpPage'
 import WatchPage from './pages/watch/WatchPage'
 import SearchPage from './pages/search/SearchPage'
+import SearchHistoryPage from './pages/history/SearchHistoryPage'
 import Footer from './components/Footer'
 
 import { Toaster } from 'react-hot-toast'
@@ -37,6 +38,10 @@ function App() {
         <Route path="/signup" element={!user ? <SignUpPage /> : <Navigate to={'/'} />} />
         <Route path="/watch/:id" element={user ? <WatchPage /> : <Navigate to={'/login'} />} />
         <Route path="/search" element={user ? <SearchPage /> : <Navigate to={'/login'} />} />
+        <Route
+          path="/history"
+          element={user ? <SearchHistoryPage /> : <Navigate to={'/login'} />}
+        />
       </Routes>
       <Footer />
       <Toaster />
