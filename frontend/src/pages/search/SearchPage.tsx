@@ -8,9 +8,11 @@ import { ORIGINAL_IMG_BASE_URL } from '../../utils/constanst'
 type ActiveTab = 'Movie' | 'TV Show' | 'People'
 
 const SearchPage = () => {
-  const [activeTab, setActiveTab] = useState<ActiveTab>('Movie')
+  const { contentType, setContentType } = useContentStore()
+  const [activeTab, setActiveTab] = useState<ActiveTab>(
+    contentType === 'movie' ? 'Movie' : 'TV Show'
+  )
   const [searchValue, setSearchValue] = useState('')
-  const { setContentType } = useContentStore()
   const {
     getSearchContentResults,
     clearResutls,
