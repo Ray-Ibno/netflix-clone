@@ -19,11 +19,10 @@ export const getTrendingTvShows = async (req, res) => {
 export const getTvTrailers = async (req, res) => {
   const tv_id = req.params.id
   try {
-    const data = await fetchTmdb(
-      `https://api.themoviedb.org/3/tv/${tv_id}/videos`
-    )
+    const data = await fetchTmdb(`https://api.themoviedb.org/3/tv/${tv_id}/videos`)
 
-    if (!data) return res.status(404).send({ trailers: 'no data found' })
+    if (!data || data.results.length === 0)
+      return res.status(404).json({ trailers: 'no data found' })
 
     res.status(200).json({ content: data.results })
   } catch (error) {
@@ -48,9 +47,7 @@ export const getSimilarTvShows = async (req, res) => {
   const tv_id = req.params.id
 
   try {
-    const data = await fetchTmdb(
-      `https://api.themoviedb.org/3/tv/${tv_id}/similar`
-    )
+    const data = await fetchTmdb(`https://api.themoviedb.org/3/tv/${tv_id}/similar`)
     if (!data) return res.status(404).json({ similarMovies: 'no data found' })
     res.status(200).json({ content: data.results })
   } catch (error) {
