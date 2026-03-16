@@ -6,6 +6,10 @@ export const dbConnect = async () => {
     console.log(`connected to the db ${conn.connection.host}`)
   } catch (error) {
     console.error(`connection to db error: ${error.message}`)
-    process.exitCode = 1
+    process.exit(1)
   }
 }
+
+mongoose.connection.on('error', (err) => {
+  console.error(`Runtime database error: ${err}`)
+})

@@ -1,5 +1,12 @@
 import User from '../models/user.model.js'
 
+/**
+ *
+ * @param {string} userId
+ * @param {JSON} data
+ * @param {('movie' | 'tv' | 'person')} type
+ */
+
 const updateUserSearchHistory = async (userId, data, type) => {
   const exists = await User.findOne({
     _id: userId,

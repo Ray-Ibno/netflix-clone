@@ -6,7 +6,8 @@ import { useContentStore } from '../store/content'
 
 const Navbar = () => {
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false)
-  const { user, logout } = useAuthStore()
+  const { logout } = useAuthStore()
+  const user = useAuthStore((state) => state.user)
   const { setContentType } = useContentStore()
 
   const navItems = [

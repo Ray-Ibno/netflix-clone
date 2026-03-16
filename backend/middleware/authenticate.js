@@ -1,30 +1,22 @@
 import jwt from 'jsonwebtoken'
 import User from '../models/user.model.js'
+import AppError from '../errors/AppError.js'
 
 const authenticate = async (req, res, next) => {
   const token = req.cookies.jwt
 
-  try {
-    if (!token)
-      return res.status(401).json({ message: 'You are not authorized' })
+  if (!token) throw new AppError('You are not authorized', 401)
 
-    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, {
-      expiresIn: '1hr',
-    })
+  const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, {
+    expiresIn: '1hr',
+  })
 
-    if (!decoded) {
-      return res
-        .status(403)
-        .json({ message: "You don't have access to this page" })
-    }
-    const user = await User.findById(decoded.userId)
-    if (!user) return res.status(404).json({ message: 'user not found' })
-    req.user = user
-    next()
-  } catch (error) {
-    console.error(`Error at authenticate middleware: ${error.message}`)
-    res.status(500).json({ message: 'Internal server error' })
-  }
+  if (!decoded) throw new AppError("You don't have access to this page", 403)
+
+  const user = await User.findById(decoded.userId)
+  if (!user) throw new AppError('user not found', 404)
+  req.user = user
+  next()
 }
 
 export default authenticate

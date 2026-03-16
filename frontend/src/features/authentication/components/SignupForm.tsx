@@ -80,7 +80,7 @@ const SignupForm = () => {
             </div>
           </div>
         </div>
-        <button className="w-full py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700">
+        <button className="w-full py-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-700 cursor-pointer">
           Sign up
         </button>
       </form>
