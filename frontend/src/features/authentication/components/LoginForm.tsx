@@ -55,6 +55,10 @@ const LoginForm = () => {
           Sign up
         </Link>
       </div>
+      <p className="text-xs border border-red-500 text-red-500 p-2 rounded-lg">
+        DISCLAIMER: THIS IS A DEMO PROJECT WEBSITE, NOT THE OFFICIAL NETFLIX. PLEASE DO NOT ENTER
+        YOUR NETFLIX CREDENTIALS!!
+      </p>
     </>
   )
 }
