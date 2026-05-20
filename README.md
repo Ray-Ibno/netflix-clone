@@ -6,12 +6,12 @@
 
 ## Screenshots
 
-![authenticated page](/screenshot_authenticated.png)
-![guest page](/screenshot_guest.png)
-![authenticated mobile page](/screenshot_authenticated_mobile.png)
-![guest mobile page](/screenshot_guest_mobile.png)
-![login page](/screenshot_login.png)
-![sign up page](/screenshot_signup.png)
+![authenticated page](./frontend/public/screenshot_authenticated.png)
+![guest page](./frontend/public/screenshot_guest.png)
+![authenticated mobile page](./frontend/public/screenshot_authenticated_mobile.png)
+![guest mobile page](./frontend/public/screenshot_guest_mobile.png)
+![login page](./frontend/public/screenshot_login.png)
+![sign up page](./frontend/public/screenshot_signup.png)
 
 ## Teck Stack
 
