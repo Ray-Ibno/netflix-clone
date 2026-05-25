@@ -31,7 +31,7 @@ function App() {
   }
 
   return (
-    <>
+    <main>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={!user ? <LoginPage /> : <Navigate to={'/'} />} />
@@ -45,7 +45,7 @@ function App() {
       </Routes>
       <Footer />
       <Toaster />
-    </>
+    </main>
   )
 }
 
