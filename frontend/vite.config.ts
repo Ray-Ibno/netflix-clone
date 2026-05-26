@@ -12,4 +12,7 @@ export default defineConfig({
       },
     },
   },
+  html: {
+    cspNonce: '__CSP_NONCE__',
+  },
 })
