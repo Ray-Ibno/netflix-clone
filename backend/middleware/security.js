@@ -9,30 +9,31 @@ const generateNonce = (req, res, next) => {
 const cspConfiguration = (req, res, next) => {
   helmet.contentSecurityPolicy({
     directives: {
-      objectSrc: ["'none'"],
-      scriptSrc: [
+      'default-src': ["'self'"],
+      'object-src': ["'none'"],
+      'script-src': [
         (req, res) => `'nonce-${res.locals.nonce}'`,
         "'strict-dynamic'",
         "'unsafe-inline'",
         'https:',
         'http',
       ],
-      styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
-      fontSrc: ["'self'", 'https://fonts.gstatic.com', 'data:'],
-      imgSrc: [
+      'style-src': ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
+      'font-src': ["'self'", 'https://fonts.gstatic.com', 'data:'],
+      'img-src': [
         "'self'",
         'data:',
         'https://image.tmdb.org',
         'https://img.youtube.com',
         'https://*.ytimg.com',
       ],
-      frameSrc: ["'self'", 'https://www.youtube.com'],
-      connectSrc: [
+      'frame-src': ["'self'", 'https://www.youtube.com'],
+      'connect-src': [
         "'self'",
         'https://mern-netflix-clone-gofs.onrender.com/', // Allows HTTP polling requests
         'wss://mern-netflix-clone-gofs.onrender.com/', // Allows native WebSocket connections
       ],
-      baseUri: ["'none'"],
+      'base-uri': ["'none'"],
     },
   })(req, res, next)
 }
