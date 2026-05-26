@@ -19,8 +19,14 @@ const cspConfiguration = (req, res, next) => {
       ],
       styleSrc: ["'self'", "'unsafe-inline'", 'https://fonts.googleapis.com'],
       fontSrc: ["'self'", 'https://fonts.gstatic.com', 'data:'],
-      imgSrc: ["'self'", 'data:', 'https://image.tmdb.org'],
-      mediaSrc: ["'self'", 'https://www.youtube.com'],
+      imgSrc: [
+        "'self'",
+        'data:',
+        'https://image.tmdb.org',
+        'https://img.youtube.com',
+        'https://*.ytimg.com',
+      ],
+      frameSrc: ["'self'", 'https://www.youtube.com'],
       connectSrc: [
         "'self'",
         'https://mern-netflix-clone-gofs.onrender.com/', // Allows HTTP polling requests
