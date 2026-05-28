@@ -20,13 +20,13 @@ const SliderItems = ({ content }: SliderItemsProp) => {
           <Link
             key={content.id}
             to={`/watch/${content.id}`}
-            aria-label={`watch trailer for ${content.title || content.name}`}
+            aria-label={`watch trailer for ${content.title || content.name || 'this on youtube'}`}
             className="min-w-62.5 relative group"
           >
             <div className="rounded-lg overflow-hidden">
               <img
                 src={`${SMALL_IMG_BASE_URL}${content.poster_path}`}
-                alt="Poster Image"
+                alt={`${content.title || content.name || 'Content'} Poster`}
                 className="transition-transform duration-300 ease-in-out group-hover:scale-125"
               />
             </div>

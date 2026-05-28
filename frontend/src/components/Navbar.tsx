@@ -50,10 +50,15 @@ const Navbar = () => {
 
       <div className="flex gap-2 items-center z-50">
         <Link to={'/search'} aria-label="Link to search page">
-          <Search className="size-6 cursor-pointer" />
+          <Search aria-label="Search Icon" className="size-6 cursor-pointer" />
         </Link>
-        <img src={user?.image} alt="Avatar" className="h-8 rounded cursor-pointer" />
-        <LogOut className="size-6 cursor-pointer" onClick={logout} />
+        <img
+          aria-label="Profile avatar"
+          src={user?.image}
+          alt="Avatar"
+          className="h-8 rounded cursor-pointer"
+        />
+        <LogOut aria-label="Logout button" className="size-6 cursor-pointer" onClick={logout} />
 
         <div className="sm:hidden">
           <Menu className="size-6 cursor-pointer" onClick={toggleHamburgerMenu} />
