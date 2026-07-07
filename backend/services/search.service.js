@@ -5,7 +5,7 @@ import fetchTmdb from './tmdb.service.js'
 
 export const fetchMovie = async (query, userId) => {
   const data = await fetchTmdb(
-    `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`,
+    `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false`,
   )
   //Some api have data set to null or []
   if (!data) throw new AppError('no data found', 404)
@@ -20,7 +20,7 @@ export const fetchMovie = async (query, userId) => {
 
 export const fetchPerson = async (query, userId) => {
   const data = await fetchTmdb(
-    `https://api.themoviedb.org/3/search/person?query=${query}&include_adult=false&language=en-US&page=1`,
+    `https://api.themoviedb.org/3/search/person?query=${query}&include_adult=false`,
   )
 
   if (!data) throw new AppError('no data found', 404)
@@ -34,7 +34,7 @@ export const fetchPerson = async (query, userId) => {
 
 export const fetchTvShow = async (query, userId) => {
   const data = await fetchTmdb(
-    `https://api.themoviedb.org/3/search/tv?query=${query}&include_adult=false&language=en-US&page=1`,
+    `https://api.themoviedb.org/3/search/tv?query=${query}&include_adult=false`,
   )
 
   if (!data) throw new AppError('no data found', 404)

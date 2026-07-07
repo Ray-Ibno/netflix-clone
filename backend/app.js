@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import express from 'express'
 import path from 'path'
 import fs from 'fs'
+import cors from 'cors'
 
 import authRouter from './routes/auth.route.js'
 import movieRouter from './routes/movie.route.js'
@@ -21,6 +22,14 @@ const __dirname = path.resolve()
 
 app.use(express.json())
 app.use(cookieParser())
+app.use(
+  cors({
+    origin: 'http://localhost:5173/',
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Authorization', 'Content-Type', 'Accept'],
+    credentials: true,
+  }),
+)
 app.use(security)
 
 app.use('/api/v1/auth', authRouter)

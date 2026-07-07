@@ -1,13 +1,14 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import axios from 'axios'
 import toast from 'react-hot-toast'
+import { api } from '../../../lib/api'
 
 const useDeleteHistory = () => {
   const queryClient = useQueryClient()
 
   const deleteHistory = async (id: string) => {
     try {
-      const response = await axios.delete(`/api/v1/search/history/${id}`)
+      const response = await api.delete(`/search/history/${id}`)
       return response.status
     } catch (error) {
       if (axios.isAxiosError(error)) {

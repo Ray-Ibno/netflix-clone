@@ -11,8 +11,12 @@ const fetchTmdb = async (url) => {
     },
   }
 
-  const response = await axios.request(options)
-  return response.data
+  try {
+    const response = await axios.request(options)
+    return response.data
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export default fetchTmdb

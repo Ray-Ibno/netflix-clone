@@ -14,11 +14,11 @@ import { useEffect } from 'react'
 import { Loader } from 'lucide-react'
 
 function App() {
-  const { user, getAuthUser, isGettingUser } = useAuthStore()
+  const { user, accessToken, getAuthUser, isGettingUser } = useAuthStore()
 
   useEffect(() => {
     getAuthUser()
-  }, [getAuthUser])
+  }, [getAuthUser, accessToken])
 
   if (isGettingUser) {
     return (

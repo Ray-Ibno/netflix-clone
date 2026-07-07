@@ -10,12 +10,12 @@ type ActiveTab = 'Movie' | 'TV Show' | 'People'
 const SearchPage = () => {
   const { contentType, setContentType } = useContentStore()
   const [activeTab, setActiveTab] = useState<ActiveTab>(
-    contentType === 'movie' ? 'Movie' : 'TV Show'
+    contentType === 'movie' ? 'Movie' : 'TV Show',
   )
   const [searchValue, setSearchValue] = useState('')
   const {
     getSearchContentResults,
-    clearResutls,
+    clearResults,
     data: searchResults,
     isLoading,
     error,
@@ -23,7 +23,7 @@ const SearchPage = () => {
 
   const handleTabClick = (tab: ActiveTab) => {
     if (isLoading) return
-    clearResutls()
+    clearResults()
     setSearchValue('')
     setActiveTab(tab)
     if (tab === 'Movie') setContentType('movie')

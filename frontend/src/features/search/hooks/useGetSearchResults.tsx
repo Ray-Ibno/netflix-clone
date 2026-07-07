@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useState } from 'react'
+import { api } from '../../../lib/api'
 
 type ActiveTabProp = 'Movie' | 'TV Show' | 'People'
 
@@ -16,13 +17,19 @@ const useGetSearchResults = (activeTab: ActiveTabProp, query: string) => {
   const [error, setError] = useState<number | null>()
 
   const getSearchContentResults = async () => {
+    if (!query || query.trim() === '') {
+      setData([]) // Optionally reset data array
+      setError(null)
+      return
+    }
+
     let category = ''
     if (activeTab === 'Movie') category = 'movie'
     if (activeTab === 'TV Show') category = 'tv'
     if (activeTab === 'People') category = 'person'
     try {
       setIsLoading(true)
-      const response = await axios.get(`/api/v1/search/${category}/${query}`)
+      const response = await api.get(`/search/${category}/${query}`)
       setData(response.data.content)
       setIsLoading(false)
       setError(null)
@@ -34,8 +41,8 @@ const useGetSearchResults = (activeTab: ActiveTabProp, query: string) => {
     }
   }
 
-  const clearResutls = () => setData([])
+  const clearResults = () => setData([])
 
-  return { getSearchContentResults, clearResutls, data, isLoading, error }
+  return { getSearchContentResults, clearResults, data, isLoading, error }
 }
 export default useGetSearchResults

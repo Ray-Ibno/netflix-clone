@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import axios from 'axios'
+import { api } from '../lib/api'
 import toast from 'react-hot-toast'
 
 type User = {
@@ -13,22 +14,48 @@ type User = {
 
 type AuthState = {
   user: Pick<User, 'username' | 'image' | 'searchHistory'> | null
+  accessToken: string | null
   isGettingUser: boolean
   isLoading: boolean
+  refreshAccessToken: () => Promise<string> | null
   getAuthUser: () => void
   signup: (credentials: Pick<User, 'email' | 'username' | 'password' | 'passwordRepeat'>) => void
   login: (credentials: Pick<User, 'username' | 'password'>) => void
   logout: () => void
 }
 
-export const useAuthStore = create<AuthState>((set) => ({
+export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
+  accessToken: null,
   isGettingUser: true,
   isLoading: false,
   errorMessage: null,
-  getAuthUser: async () => {
+  refreshAccessToken: async () => {
     try {
-      const response = await axios.get('/api/v1/auth/authCheck')
+      const response = await axios.post('/api/v1/auth/refresh', {}, { withCredentials: true })
+
+      const token = response.data.accessToken
+      set({ accessToken: token })
+      return token
+    } catch {
+      set({ accessToken: null, user: null })
+      return null
+    }
+  },
+  getAuthUser: async () => {
+    let currentAccessToken = get().accessToken
+
+    if (!currentAccessToken) {
+      currentAccessToken = await get().refreshAccessToken()
+    }
+
+    if (!currentAccessToken) {
+      set({ isGettingUser: false })
+      return
+    }
+
+    try {
+      const response = await api.get('/auth/authCheck')
       set(() => ({ user: response.data, isGettingUser: false }))
     } catch {
       set(() => ({ user: null, isGettingUser: false }))
@@ -37,8 +64,12 @@ export const useAuthStore = create<AuthState>((set) => ({
   signup: async (credentials) => {
     set(() => ({ isLoading: true }))
     try {
-      const response = await axios.post('/api/v1/auth/signup', credentials)
-      set(() => ({ user: response.data, isLoading: false }))
+      const response = await api.post('/auth/signup', credentials)
+      set(() => ({
+        user: response.data.user,
+        accessToken: response.data.accessToken,
+        isLoading: false,
+      }))
       toast.success('Account created successfully')
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -52,8 +83,12 @@ export const useAuthStore = create<AuthState>((set) => ({
   login: async (credentials) => {
     set(() => ({ isLoading: true }))
     try {
-      const response = await axios.post('/api/v1/auth/login', credentials)
-      set(() => ({ user: response.data, isLoading: false }))
+      const response = await api.post('/auth/login', credentials)
+      set(() => ({
+        user: response.data.user,
+        accessToken: response.data.accessToken,
+        isLoading: false,
+      }))
       toast.success('Logged in successfully')
     } catch (error) {
       if (axios.isAxiosError(error)) {
@@ -67,7 +102,7 @@ export const useAuthStore = create<AuthState>((set) => ({
   logout: async () => {
     set(() => ({ isLoading: true }))
     try {
-      await axios.post('/api/v1/auth/logout')
+      await api.post('/auth/logout')
       set(() => ({ user: null, isLoading: false }))
       toast.success('Logged out successfully')
     } catch (error) {
