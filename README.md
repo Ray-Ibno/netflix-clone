@@ -2,10 +2,6 @@
 
 A responsive clone of netflix with MERN stack. It fetches movies from TMDB API and handles user acount actions.
 
-## 🚀 LIVE DEMO
-
-🔗 [Netflix CLone](https://mern-netflix-clone-gofs.onrender.com/)
-
 ## 📸 Screenshots
 
 ![authenticated page](./frontend/public/screenshot_authenticated.png)
